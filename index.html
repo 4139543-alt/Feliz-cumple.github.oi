@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para José  💜</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #211039, #68439b, #b69bd9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 25px 15px;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    color: #fff2ff;
+    animation: sparkle 3s infinite alternate;
+}
+
+@keyframes sparkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.3); }
+}
+
+.container {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 32px;
+    color: #f3e5ff;
+    margin-bottom: 12px;
+    text-shadow: 0 0 15px #d9aaff;
+}
+
+.subtitle {
+    color: #eadbff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.envelope {
+    width: 220px;
+    height: 145px;
+    background: #d5b9f4;
+    margin: 30px auto;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 10px 35px #1c0d36;
+    transition: transform .3s;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 85px solid #b38bdf;
+    z-index: 2;
+}
+
+.envelope::after {
+    content: "💜";
+    position: absolute;
+    top: 78px;
+    left: 94px;
+    font-size: 32px;
+    z-index: 3;
+}
+
+.envelope p {
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+    color: #573579;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.hint {
+    color: #f1e3ff;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.letter {
+    display: none;
+    background: #fff9ff;
+    color: #53366f;
+    padding: 32px 25px;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px #1c0d36;
+    animation: appear .6s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px) scale(.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.letter h2 {
+    color: #8152a9;
+    margin-bottom: 22px;
+    font-size: 25px;
+}
+
+.letter p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.number {
+    color: #a47bc9;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    word-spacing: 7px;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+button {
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #9d70c7, #69418f);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 6px;
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 5px 18px #b995d9;
+}
+
+.final {
+    display: none;
+    animation: appear .7s ease;
+}
+
+.final h2 {
+    font-size: 29px;
+    color: #f5e5ff;
+    margin-bottom: 20px;
+}
+
+.final p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f5eaff;
+}
+
+.signature {
+    margin-top: 25px;
+    color: #f3d7ff;
+    font-style: italic;
+}
+
+@media(max-width: 400px) {
+    h1 { font-size: 27px; }
+    .letter { padding: 25px 18px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+    <div id="intro">
+        <h1>Para el brujo mayor 💜</h1>
+
+        <p class="subtitle">
+            Hoy quiero regalarte algo diferente...
+            Unas palabras que espero puedas guardar
+            en tu corazón.
+        </p>
+
+        <div class="envelope" onclick="openLetter()">
+            <p>Una carta para ti</p>
+        </div>
+
+        <p class="hint">✨ Haz clic sobre la cartita para comenzar ✨</p>
+    </div>
+
+    <div class="letter" id="letter">
+        <div class="number" id="number"></div>
+        <h2 id="title"></h2>
+        <p id="message"></p>
+        <button onclick="nextLetter()" id="next">
+            Siguiente carta 💌
+        </button>
+    </div>
+
+    <div class="final" id="final">
+        <h2>¡Feliz cumpleaños, BRUJO MAYOR! 🎂💜</h2>
+
+        <p>
+            Espero que nunca olvides lo mucho que vales.
+            Que la vida te sorprenda con oportunidades,
+            alegrías y momentos inolvidables.
+
+            Nunca dejes de soñar, de luchar por lo que
+            quieres y de creer en ti mismo.
+
+            No importa cuántos años pasen,
+            siempre voy a desearte lo mejor.
+        </p>
+
+        <p class="signature">
+            Con mucho cariño, LA BRUJA MENOR. 💜
+        </p>
+
+        <br>
+        <button onclick="location.reload()">
+            Volver a leer las cartas ↻
+        </button>
+    </div>
+
+</div>
+
+<script>
+
+const cartas = [
+{
+titulo: "Nunca dudes de ti ✨",
+mensaje: "José Adolfo, quiero que recuerdes que eres una persona capaz de conseguir grandes cosas. No permitas que un mal día te haga dudar de todo lo bueno que hay en ti."
+},
+{
+titulo: "Sigue adelante 💜",
+mensaje: "La vida no siempre será sencilla. Habrá momentos en los que las cosas no salgan como esperas, pero eso no significa que debas rendirte. Cada experiencia tiene algo que enseñarte."
+},
+{
+titulo: "Cree en tus sueños 🌙",
+mensaje: "No tengas miedo de querer cosas grandes. Atrévete a intentarlo, a equivocarte y a comenzar de nuevo. Tu futuro todavía tiene muchas cosas bonitas esperándote."
+},
+{
+titulo: "Una pequeña verdad 🦋",
+mensaje: "No necesitas ser perfecto para ser alguien extraordinario. Sé tú mismo, reconoce tus logros y nunca olvides lo mucho que vales."
+},
+{
+titulo: "Para los días difíciles ☁️",
+mensaje: "Cuando sientas que todo se complica, recuerda que no tienes que resolver tu vida entera en un solo día. Ve paso a paso. Incluso los avances pequeños cuentan."
+},
+{
+titulo: "Nunca estás solo 🤍",
+mensaje: "Quiero que sepas que tienes una hermana que desea verte feliz, que espera que cumplas tus sueños y que siempre querrá cosas buenas para tu vida."
+},
+{
+titulo: "Disfruta tu camino 🌷",
+mensaje: "No te compares con los demás. Cada persona tiene su propio tiempo, sus propias batallas y su propia historia. Vive la tuya con orgullo."
+},
+{
+titulo: "Algo que deseo para ti 💫",
+mensaje: "Deseo que nunca te falten motivos para sonreír, personas sinceras a tu lado, fuerzas para continuar y oportunidades para convertir tus sueños en realidad."
+},
+{
+titulo: "Una última cosita 💌",
+mensaje: "Quizás no siempre encuentre las palabras para decirte lo importante que eres, pero hoy quiero recordarte que tu existencia es especial y que mereces una vida llena de cosas bonitas."
+}
+];
+
+let actual = 0;
+
+function openLetter() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+    showLetter();
+}
+
+function showLetter() {
+    document.getElementById("number").textContent =
+        "CARTA " + (actual + 1) + " DE " + cartas.length;
+
+    document.getElementById("title").textContent =
+        cartas[actual].titulo;
+
+    document.getElementById("message").textContent =
+        cartas[actual].mensaje;
+
+    document.getElementById("letter").style.animation = "none";
+    void document.getElementById("letter").offsetWidth;
+    document.getElementById("letter").style.animation = "appear .6s ease";
+
+    if (actual === cartas.length - 1) {
+        document.getElementById("next").textContent =
+            "Descubrir mi último mensaje 💜";
+    } else {
+        document.getElementById("next").textContent =
+            "Siguiente carta 💌";
+    }
+}
+
+function nextLetter() {
+    actual++;
+
+    if (actual < cartas.length) {
+        showLetter();
+    } else {
+        document.getElementById("letter").style.display = "none";
+        document.getElementById("final").style.display = "block";
+    }
+}
+
+// Estrellitas decorativas
+for (let i = 0; i < 35; i++) {
+    let star = document.createElement("span");
+    star.className = "star";
+    star.textContent = "✦";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (8 + Math.random() * 13) + "px";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    document.getElementById("stars").appendChild(star);
+}
+
+</script>
+
+</body>
+</html>
